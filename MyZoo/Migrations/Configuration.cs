@@ -222,6 +222,7 @@ namespace MyZoo.Migrations
                 );
 
 
+
             Diagnosis worm = new Diagnosis()
             {
                 Name = "Mask",
@@ -243,43 +244,55 @@ namespace MyZoo.Migrations
                 Name = "Avmaskningsmedel"
             };
 
-            Journal bearBjorneJournal = new Journal()
-            {
-                Animal = bearChildBjorne,
-            };
+            //Journal bearBjorneJournal = new Journal()
+            //{
+            //    Animal = context.Animals.Find(1)
+            //};
 
-            Journal parrotSveaJournal = new Journal()
-            {
-                Animal = parrotChildSvea
-            };
+            //Journal parrotSveaJournal = new Journal()
+            //{
+            //    Animal = context.Animals.Find(4)
+            //};
 
-            Journal sealRogerJournal = new Journal()
-            {
-                Animal = sealFatherRoger
-            };
+            //Journal sealRogerJournal = new Journal()
+            //{
+            //    Animal = context.Animals.Find(7),
+
+            //};
+
 
             JournalsDiagnos diagnoseJournalBjorne = new JournalsDiagnos()
             {
                 Diagnosis = brokenLeg,
-                Journal = bearBjorneJournal,
+                Journal = new Journal()
+                {
+                    Animal = bearChildBjorne
+                },
                 Medications = {painkiller}
             };
 
             JournalsDiagnos diagnoseJournalSara = new JournalsDiagnos()
             {
                 Diagnosis = worm,
-                Journal = parrotSveaJournal,
+                Journal = new Journal()
+                {
+                    Animal = sealChildSara
+                },
                 Medications = { dewormingMedication }
             };
 
             JournalsDiagnos diagnoseJournalRoger = new JournalsDiagnos()
             {
                 Diagnosis = brokenLeg,
-                Journal = sealRogerJournal,
+                Journal = new Journal()
+                {
+                    Animal = sealFatherRoger
+
+                },
                 Medications = { painkiller }
             };
 
-            context.JournalsDiagnoses.AddOrUpdate(j => j.JournalId,
+            context.JournalsDiagnoses.AddOrUpdate(j => j.JournalDiagnoseId,
                 diagnoseJournalRoger,
                 diagnoseJournalBjorne,
                 diagnoseJournalSara

@@ -16,7 +16,8 @@ namespace MyZoo.DataContext
 
         public int JournalId { get; set; }
 
-        public int AnimalId { get; set; }
+        //[ForeignKey("Animal")]
+        //public int AnimalId { get; set; }
 
         public virtual Animal Animal { get; set; }
 

@@ -5,8 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyZoo.UI"
         mc:Ignorable="d"
-        Title="VetHandlePatient" Height="300" Width="300">
+        Title="VetHandlePatient" Height="525.366" Width="607.317">
     <Grid>
-        
+        <ComboBox Name="ComboBoxVeterinarians" SelectionChanged="ComboBoxVeterinarians_OnSelectionChanged" HorizontalAlignment="Left" Margin="89,10,0,0" VerticalAlignment="Top" Width="154"/>
+        <Label Content="Veterinär" HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top" Width="74"/>
+        <ListBox Name="ListBoxBookings" MouseDoubleClick="ListBoxBookings_OnMouseDoubleClick" SelectionChanged="ListBoxBookings_OnSelectionChanged" HorizontalAlignment="Left" Height="100" Margin="10,70,0,0" VerticalAlignment="Top" Width="344"/>
+        <Label Content="Bokningar" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top" Width="74"/>
+        <Label Content="Aktuell patient:" HorizontalAlignment="Left" Margin="10,182,0,0" VerticalAlignment="Top" Width="93"/>
+        <Label Name="LabelCurrentPatient" Content="" HorizontalAlignment="Left" Margin="108,182,0,0" VerticalAlignment="Top" Width="93"/>
+        <ListBox Name="ListBoxJournalEntries" HorizontalAlignment="Left" Height="100" Margin="10,244,0,0" VerticalAlignment="Top" Width="344"/>
+        <Label Content="Journal" HorizontalAlignment="Left" Margin="10,213,0,0" VerticalAlignment="Top" Width="74"/>
+        <ComboBox Name="ComboBoxDiagnoses" HorizontalAlignment="Left" Margin="424,39,0,0" VerticalAlignment="Top" Width="167"/>
+        <Label Content="Diagnos" HorizontalAlignment="Left" Margin="424,8,0,0" VerticalAlignment="Top" Width="74"/>
+        <TextBox Name="TextBoxDiagnoseDescription" HorizontalAlignment="Left" Height="73" Margin="424,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="167"/>
+        <Label Content="Beskrivning" HorizontalAlignment="Left" Margin="424,66,0,0" VerticalAlignment="Top" Width="74"/>
+        <Label Content="Medicin" HorizontalAlignment="Left" Margin="424,175,0,0" VerticalAlignment="Top" Width="108"/>
+        <ListBox Name="ListBoxPrescribedMedication" HorizontalAlignment="Left" Height="100" Margin="424,283,0,0" VerticalAlignment="Top" Width="167"/>
+        <ComboBox Name="ComboBoxMedications" HorizontalAlignment="Left" Margin="424,201,0,0" VerticalAlignment="Top" Width="167"/>
+        <Button Name="ButtonPrescribeMedication" Click="ButtonPrescribeMedication_OnClick" Content="Ordinera" HorizontalAlignment="Left" Margin="516,228,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Ordinerad medicin" HorizontalAlignment="Left" Margin="424,252,0,0" VerticalAlignment="Top" Width="108"/>
+        <Button Name="ButtonAddJournalEntry" Click="ButtonAddJournalEntry_OnClick" Content="Journalför" HorizontalAlignment="Left" Margin="516,388,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Name="ButtonRemoveJournalEntry" Click="ButtonRemoveJournalEntry_OnClick" Content="Ta bort" HorizontalAlignment="Left" Margin="10,349,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Name="ButtonRemoveBookingAndCloseWindow" Content="Spara och avsluta möte" Click="ButtonRemoveBookingAndCloseWindow_OnClick" HorizontalAlignment="Left" Margin="424,411,0,0" VerticalAlignment="Top" Width="167"/>
+
     </Grid>
 </Window>

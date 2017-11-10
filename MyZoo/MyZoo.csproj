@@ -96,9 +96,14 @@
     <Compile Include="Migrations\201711100713286_AddIgnoreJournalPropertyInAnimal1.Designer.cs">
       <DependentUpon>201711100713286_AddIgnoreJournalPropertyInAnimal1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711101958398_RemoveAnimalIdPropertyInJournal.cs" />
+    <Compile Include="Migrations\201711101958398_RemoveAnimalIdPropertyInJournal.Designer.cs">
+      <DependentUpon>201711101958398_RemoveAnimalIdPropertyInJournal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\AnimalSimple.cs" />
     <Compile Include="Model\AnimalBooking.cs" />
+    <Compile Include="Model\JournalEntry.cs" />
     <Compile Include="Model\Veterinary.cs" />
     <Compile Include="UI\MakeVetAppointment.xaml.cs">
       <DependentUpon>MakeVetAppointment.xaml</DependentUpon>
@@ -169,6 +174,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711100713286_AddIgnoreJournalPropertyInAnimal1.resx">
       <DependentUpon>201711100713286_AddIgnoreJournalPropertyInAnimal1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711101958398_RemoveAnimalIdPropertyInJournal.resx">
+      <DependentUpon>201711101958398_RemoveAnimalIdPropertyInJournal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

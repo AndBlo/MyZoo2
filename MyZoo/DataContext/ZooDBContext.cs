@@ -49,8 +49,10 @@ namespace MyZoo.DataContext
             modelBuilder.Entity<Journal>()
                 .HasRequired(e => e.Animal)
                 .WithOptional(e => e.Journal);
+
             modelBuilder.Entity<Animal>()
                 .Ignore(e => e.Journal);
+
         }
     }
 }

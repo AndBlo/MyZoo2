@@ -463,6 +463,28 @@ namespace MyZoo.DAL
             return list;
         }
 
+        public BindingList<AnimalBooking> GetBookingByVeterinaryIdList(int veterinaryId)
+        {
+            BindingList<AnimalBooking> list = null;
+
+            using (var db = new ZooDataBaseContext())
+            {
+                var query = from booking in db.Bookings
+                    where booking.VeterinaryId == veterinaryId
+                    select new AnimalBooking()
+                    {
+                        AnimalId = booking.AnimalId,
+                        AnimalName = booking.Animal.Name,
+                        BookingId = booking.BookingId,
+                        DateTime = booking.DateTime,
+                        VeterinaryId = booking.VeterinaryId,
+                        VeterinaryName = booking.Veterinarian.Namn
+                    };
+                list = new BindingList<AnimalBooking>(query.ToList());
+            }
+            return list;
+        }
+
         public void AddBooking(AnimalBooking bookingModel)
         {
             using (var db = new ZooDataBaseContext())
@@ -503,6 +525,31 @@ namespace MyZoo.DAL
 
                 db.SaveChanges();
             }
+        }
+
+        public BindingList<JournalEntry> GetJournalEntries(int animalId)
+        {
+            BindingList<JournalEntry> list = null;
+
+            //using (var db = new ZooDataBaseContext())
+            //{
+            //    var query = from journalEntry in db.Journals
+            //        where journalEntry.AnimalId == animalId
+            //        select new JournalEntry()
+            //        {
+            //            AnimalId = journalEntry.AnimalId,
+            //            AnimalName = journalEntry.Animal.Name,
+            //            JournalId = journalEntry.JournalId,
+            //            DiagnoseId = (int) journalEntry.DiagnoseId,
+            //            DiagnoseName = journalEntry.Diagnosis.Name,
+            //            DiagnoseDescription = journalEntry.Diagnosis.Description,
+            //            Medications = journalEntry.Medications.Select(p => p.Name).ToList()
+            //        };
+
+            //    list = new BindingList<JournalEntry>(query.ToList());
+            //}
+
+            return list;
         }
     }
 }
