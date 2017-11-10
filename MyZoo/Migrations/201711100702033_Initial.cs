@@ -13,10 +13,11 @@ namespace MyZoo.Migrations
                     {
                         AnimalId = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false, maxLength: 100),
-                        Weight = c.Int(nullable: false),
+                        Weight = c.Single(nullable: false),
                         Sex = c.String(nullable: false, maxLength: 6),
                         CountryId = c.Int(),
                         SpeciesId = c.Int(),
+                        JournalId = c.Int(),
                     })
                 .PrimaryKey(t => t.AnimalId)
                 .ForeignKey("dbo.Countries", t => t.CountryId)
@@ -31,8 +32,7 @@ namespace MyZoo.Migrations
                         BookingId = c.Int(nullable: false, identity: true),
                         AnimalId = c.Int(nullable: false),
                         VeterinaryId = c.Int(nullable: false),
-                        StartTime = c.Time(nullable: false, precision: 7),
-                        Date = c.DateTime(nullable: false, storeType: "date"),
+                        DateTime = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.BookingId)
                 .ForeignKey("dbo.Animals", t => t.AnimalId, cascadeDelete: true)
@@ -79,12 +79,12 @@ namespace MyZoo.Migrations
                 "dbo.Journals",
                 c => new
                     {
-                        JournalId = c.Int(nullable: false, identity: true),
+                        JournalId = c.Int(nullable: false),
                         AnimalId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.JournalId)
-                .ForeignKey("dbo.Animals", t => t.AnimalId, cascadeDelete: true)
-                .Index(t => t.AnimalId);
+                .ForeignKey("dbo.Animals", t => t.JournalId)
+                .Index(t => t.JournalId);
             
             CreateTable(
                 "dbo.JournalsDiagnoses",
@@ -93,15 +93,12 @@ namespace MyZoo.Migrations
                         JournalDiagnoseId = c.Int(nullable: false, identity: true),
                         JournalId = c.Int(nullable: false),
                         DiagnoseId = c.Int(),
-                        MedicationId = c.Int(),
                     })
                 .PrimaryKey(t => t.JournalDiagnoseId)
                 .ForeignKey("dbo.Diagnoses", t => t.DiagnoseId)
                 .ForeignKey("dbo.Journals", t => t.JournalId, cascadeDelete: true)
-                .ForeignKey("dbo.Medications", t => t.MedicationId)
                 .Index(t => t.JournalId)
-                .Index(t => t.DiagnoseId)
-                .Index(t => t.MedicationId);
+                .Index(t => t.DiagnoseId);
             
             CreateTable(
                 "dbo.Diagnoses",
@@ -155,6 +152,19 @@ namespace MyZoo.Migrations
                     })
                 .PrimaryKey(t => t.TypeId);
             
+            CreateTable(
+                "dbo.MedicationJournalsDiagnos",
+                c => new
+                    {
+                        Medication_MedicationId = c.Int(nullable: false),
+                        JournalsDiagnos_JournalDiagnoseId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.Medication_MedicationId, t.JournalsDiagnos_JournalDiagnoseId })
+                .ForeignKey("dbo.Medications", t => t.Medication_MedicationId, cascadeDelete: true)
+                .ForeignKey("dbo.JournalsDiagnoses", t => t.JournalsDiagnos_JournalDiagnoseId, cascadeDelete: true)
+                .Index(t => t.Medication_MedicationId)
+                .Index(t => t.JournalsDiagnos_JournalDiagnoseId);
+            
         }
         
         public override void Down()
@@ -162,22 +172,24 @@ namespace MyZoo.Migrations
             DropForeignKey("dbo.Species", "TypeId", "dbo.Types");
             DropForeignKey("dbo.Species", "EnvironmentId", "dbo.Environments");
             DropForeignKey("dbo.Animals", "SpeciesId", "dbo.Species");
-            DropForeignKey("dbo.JournalsDiagnoses", "MedicationId", "dbo.Medications");
+            DropForeignKey("dbo.Journals", "JournalId", "dbo.Animals");
+            DropForeignKey("dbo.MedicationJournalsDiagnos", "JournalsDiagnos_JournalDiagnoseId", "dbo.JournalsDiagnoses");
+            DropForeignKey("dbo.MedicationJournalsDiagnos", "Medication_MedicationId", "dbo.Medications");
             DropForeignKey("dbo.JournalsDiagnoses", "JournalId", "dbo.Journals");
             DropForeignKey("dbo.JournalsDiagnoses", "DiagnoseId", "dbo.Diagnoses");
-            DropForeignKey("dbo.Journals", "AnimalId", "dbo.Animals");
             DropForeignKey("dbo.Families", "MotherId", "dbo.Animals");
             DropForeignKey("dbo.Families", "FatherId", "dbo.Animals");
             DropForeignKey("dbo.Families", "ChildId", "dbo.Animals");
             DropForeignKey("dbo.Animals", "CountryId", "dbo.Countries");
             DropForeignKey("dbo.Bookings", "VeterinaryId", "dbo.Veterinarians");
             DropForeignKey("dbo.Bookings", "AnimalId", "dbo.Animals");
+            DropIndex("dbo.MedicationJournalsDiagnos", new[] { "JournalsDiagnos_JournalDiagnoseId" });
+            DropIndex("dbo.MedicationJournalsDiagnos", new[] { "Medication_MedicationId" });
             DropIndex("dbo.Species", new[] { "TypeId" });
             DropIndex("dbo.Species", new[] { "EnvironmentId" });
-            DropIndex("dbo.JournalsDiagnoses", new[] { "MedicationId" });
             DropIndex("dbo.JournalsDiagnoses", new[] { "DiagnoseId" });
             DropIndex("dbo.JournalsDiagnoses", new[] { "JournalId" });
-            DropIndex("dbo.Journals", new[] { "AnimalId" });
+            DropIndex("dbo.Journals", new[] { "JournalId" });
             DropIndex("dbo.Families", new[] { "FatherId" });
             DropIndex("dbo.Families", new[] { "MotherId" });
             DropIndex("dbo.Families", new[] { "ChildId" });
@@ -185,6 +197,7 @@ namespace MyZoo.Migrations
             DropIndex("dbo.Bookings", new[] { "AnimalId" });
             DropIndex("dbo.Animals", new[] { "SpeciesId" });
             DropIndex("dbo.Animals", new[] { "CountryId" });
+            DropTable("dbo.MedicationJournalsDiagnos");
             DropTable("dbo.Types");
             DropTable("dbo.Environments");
             DropTable("dbo.Species");

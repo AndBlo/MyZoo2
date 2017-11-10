@@ -15,7 +15,7 @@ namespace MyZoo.DataContext
             FamiliesChildren = new HashSet<Family>();
             FamiliesFathers = new HashSet<Family>();
             FamiliesMothers = new HashSet<Family>();
-            Journals = new HashSet<Journal>();
+            //Journals = new HashSet<Journal>();
         }
 
         public int AnimalId { get; set; }
@@ -34,9 +34,13 @@ namespace MyZoo.DataContext
 
         public int? SpeciesId { get; set; }
 
+        //public int? JournalId { get; set; }
+
         public virtual Country Country { get; set; }
 
         public virtual Species Species { get; set; }
+
+        public virtual Journal Journal { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Booking> Bookings { get; set; }
@@ -50,8 +54,8 @@ namespace MyZoo.DataContext
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Family> FamiliesMothers { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Journal> Journals { get; set; }
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        //public virtual ICollection<Journal> Journals { get; set; }
 
         public override string ToString()
         {

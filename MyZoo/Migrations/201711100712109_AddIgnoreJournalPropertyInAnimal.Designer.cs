@@ -7,13 +7,13 @@ namespace MyZoo.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ChangeWeightFromDecimalToFloat : IMigrationMetadata
+    public sealed partial class AddIgnoreJournalPropertyInAnimal : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangeWeightFromDecimalToFloat));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddIgnoreJournalPropertyInAnimal));
         
         string IMigrationMetadata.Id
         {
-            get { return "201711071854053_ChangeWeightFromDecimalToFloat"; }
+            get { return "201711100712109_AddIgnoreJournalPropertyInAnimal"; }
         }
         
         string IMigrationMetadata.Source

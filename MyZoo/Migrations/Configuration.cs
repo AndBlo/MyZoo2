@@ -1,5 +1,4 @@
-using System.Data.Entity.Validation;
-using System.Windows;
+using System.Collections.Generic;
 using MyZoo.DataContext;
 
 namespace MyZoo.Migrations
@@ -14,22 +13,6 @@ namespace MyZoo.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-        }
-
-        public void doIt()
-        {
-            using (var context = new ZooDataBaseContext())
-            {
-                try
-                {
-                    Seed(context);
-                }
-                catch (DbEntityValidationException e)
-                {
-                    MessageBox.Show(e.Message);
-                    //throw;
-                }
-            }
         }
 
         protected override void Seed(MyZoo.DataContext.ZooDataBaseContext context)
@@ -55,6 +38,7 @@ namespace MyZoo.Migrations
             {
                 Name = "Köttätare"
             };
+
             DataContext.Type herbivore = new DataContext.Type()
             {
                 Name = "Växtätare"
@@ -79,12 +63,14 @@ namespace MyZoo.Migrations
                 Environment = ground,
                 Type = carnivore
             };
+
             Species amazonParrot = new Species()
             {
                 Name = "Amazonpapegoja",
                 Environment = tree,
                 Type = herbivore
             };
+
             Species seal = new Species()
             {
                 Name = "Knubbsäl",
@@ -167,133 +153,137 @@ namespace MyZoo.Migrations
                 Country = sweden
             };
 
-            Family parrotFamily = new Family()
-            {
-                FamilyId = 1,
-                AnimalChild = parrotChildSvea,
-                AnimalMother = parrotMotherDoris,
-                AnimalFather = parrotFatherGreger
-            };
-            Family bearFamily = new Family()
-            {
-                FamilyId = 2,
-                AnimalChild = bearChildBjorne,
-                AnimalFather = bearFatherSture,
-                AnimalMother = bearMotherPascha
-            };
-            Family sealFamily = new Family()
-            {
-                FamilyId = 3,
-                AnimalChild = sealChildSara,
-                AnimalMother = sealMotherBerta,
-                AnimalFather = sealFatherRoger
-            };
-
-            context.Bookings.AddOrUpdate(b => b.DateTime,
-                new Booking()
-                {
-                    Animal = bearChildBjorne,
-                    Veterinarian = new Veterinarian()
-                    {
-                        Namn = "Kurt Wallin"
-                    },
-                    DateTime = new DateTime(2017, 12, 13, 15, 30, 0)
-                },
-                new Booking()
-                {
-                    Animal = sealChildSara,
-                    Veterinarian = new Veterinarian()
-                    {
-                        Namn = "Saida Broberg"
-                    },
-                    DateTime = new DateTime(2017, 11, 20, 13, 0, 0)
-                },
-            new Booking()
-            {
-                Animal = parrotFatherGreger,
-                Veterinarian = new Veterinarian()
-                {
-                    Namn = "Karin Andersson"
-                },
-                DateTime = new DateTime(2017, 11, 15, 10, 30, 0)
-            }
-            );
-
             context.Families.AddOrUpdate(f => f.FamilyId,
-                bearFamily,
-                parrotFamily,
-                sealFamily
+                new Family()
+                {
+                    AnimalChild = bearChildBjorne,
+                    AnimalFather = bearFatherSture,
+                    AnimalMother = bearMotherPascha
+                });
+            context.Families.AddOrUpdate(f => f.FamilyId,
+                new Family()
+                {
+                    AnimalChild = parrotChildSvea,
+                    AnimalMother = parrotMotherDoris,
+                    AnimalFather = parrotFatherGreger
+                });
+            context.Families.AddOrUpdate(f => f.FamilyId,
+                new Family()
+                {
+                    AnimalChild = sealChildSara,
+                    AnimalMother = sealMotherBerta,
+                    AnimalFather = sealFatherRoger
+                });
+
+            var vetKurt = new Veterinarian()
+            {
+                Namn = "Kurt Wallin"
+            };
+
+            var vetSaida = new Veterinarian()
+            {
+                Namn = "Saida Broberg"
+            };
+
+            var vetKarin = new Veterinarian()
+            {
+                Namn = "Karin Andersson"
+            };
+
+            var booking1Time = new DateTime(2017, 12, 13, 15, 30, 0);
+
+            var booking2Time = new DateTime(2017, 11, 20, 13, 0, 0);
+
+            var booking3Time = new DateTime(2017, 11, 15, 10, 30, 0);
+
+            var booking1 = new Booking()
+            {
+                Animal = bearChildBjorne,
+                Veterinarian = vetKurt,
+                DateTime = booking1Time
+            };
+            var booking2 = new Booking()
+            {
+                Animal = parrotChildSvea,
+                Veterinarian = vetSaida,
+                DateTime = booking2Time
+            };
+            var booking3 = new Booking()
+            {
+                Animal = sealFatherRoger,
+                Veterinarian = vetKarin,
+                DateTime = booking3Time
+            };
+
+            context.Bookings.AddOrUpdate(b => b.AnimalId,
+                booking1,
+                booking2,
+                booking3
                 );
 
 
-            //Diagnosis worm = new Diagnosis()
-            //{
-            //    Name = "Mask",
-            //    Description = "En parasit som orsakar näringsbrist och magbesvär"
-            //};
-            //Diagnosis brokenLeg = new Diagnosis()
-            //{
-            //    Name = "Brutet ben",
-            //    Description = "Ett ben brutet på ett ställe. Orsakar inmobilitet och smärta."
-            //};
+            Diagnosis worm = new Diagnosis()
+            {
+                Name = "Mask",
+                Description = "En parasit som orsakar näringsbrist och magbesvär"
+            };
+            Diagnosis brokenLeg = new Diagnosis()
+            {
+                Name = "Brutet ben",
+                Description = "Ett ben brutet på ett ställe. Orsakar inmobilitet och smärta."
+            };
 
-            //Medication painkiller = new Medication()
-            //{
-            //    Name = "Smärtstillande medicin"
-            //};
+            Medication painkiller = new Medication()
+            {
+                Name = "Smärtstillande medicin"
+            };
 
-            //Medication dewormingMedication = new Medication()
-            //{
-            //    Name = "Avmaskningsmedel"
-            //};
+            Medication dewormingMedication = new Medication()
+            {
+                Name = "Avmaskningsmedel"
+            };
 
-            //Journal bearChildJournal = new Journal()
-            //{
-            //    Animal = bearChildBjorne,
-            //    Diagnoses = { new Diagnosis()
-            //    {
-            //        Name = "Mask",
-            //        Description = "En parasit som orsakar näringsbrist och magbesvär",
-            //        Medications = {dewormingMedication, painkiller}
-            //    }}
-            //};
+            Journal bearBjorneJournal = new Journal()
+            {
+                Animal = bearChildBjorne,
+            };
 
-            //Journal parrotMotherJournal = new Journal()
-            //{
-            //    Animal = parrotMotherDoris,
-            //    Diagnoses = {new Diagnosis()
-            //    {
-            //        Name = "Brutet ben",
-            //        Description = "Ett ben brutet på ett ställe. Orsakar inmobilitet och smärta.",
-            //        Medications = {painkiller}
-            //    } }
-            //};
+            Journal parrotSveaJournal = new Journal()
+            {
+                Animal = parrotChildSvea
+            };
 
-            //context.Journals.AddOrUpdate(j => j.AnimalId,
-            //    bearChildJournal,
-            //    parrotMotherJournal
-            //    );
+            Journal sealRogerJournal = new Journal()
+            {
+                Animal = sealFatherRoger
+            };
 
-            //JournalsDiagnos connection1 = new JournalsDiagnos()
-            //{
-            //    Diagnosis = worm,
-            //    Journal = bearChildJournal,
-            //    Medications = {dewormingMedication, painkiller}
-            //};
+            JournalsDiagnos diagnoseJournalBjorne = new JournalsDiagnos()
+            {
+                Diagnosis = brokenLeg,
+                Journal = bearBjorneJournal,
+                Medications = {painkiller}
+            };
 
-            //JournalsDiagnos connection2 = new JournalsDiagnos()
-            //{
-            //    Diagnosis = brokenLeg,
-            //    Journal = parrotMotherJournal,
-            //    Medications = {painkiller}
-            //};
+            JournalsDiagnos diagnoseJournalSara = new JournalsDiagnos()
+            {
+                Diagnosis = worm,
+                Journal = parrotSveaJournal,
+                Medications = { dewormingMedication }
+            };
 
-            //context.JournalsDiagnoses.AddOrUpdate(jd => jd.DiagnoseId,
-            //connection1,
-            //connection2
-            //);
+            JournalsDiagnos diagnoseJournalRoger = new JournalsDiagnos()
+            {
+                Diagnosis = brokenLeg,
+                Journal = sealRogerJournal,
+                Medications = { painkiller }
+            };
 
-
+            context.JournalsDiagnoses.AddOrUpdate(j => j.JournalId,
+                diagnoseJournalRoger,
+                diagnoseJournalBjorne,
+                diagnoseJournalSara
+            );
         }
     }
 }

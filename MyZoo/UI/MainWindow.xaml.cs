@@ -15,7 +15,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using MyZoo.Migrations;
 using MyZoo.UI;
 
 namespace MyZoo

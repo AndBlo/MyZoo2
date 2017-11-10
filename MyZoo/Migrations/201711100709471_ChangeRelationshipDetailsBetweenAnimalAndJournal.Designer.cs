@@ -7,13 +7,13 @@ namespace MyZoo.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ChangeDateAndTimeToSingleDateTimeInBookings : IMigrationMetadata
+    public sealed partial class ChangeRelationshipDetailsBetweenAnimalAndJournal : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangeDateAndTimeToSingleDateTimeInBookings));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangeRelationshipDetailsBetweenAnimalAndJournal));
         
         string IMigrationMetadata.Id
         {
-            get { return "201711091215306_ChangeDateAndTimeToSingleDateTimeInBookings"; }
+            get { return "201711100709471_ChangeRelationshipDetailsBetweenAnimalAndJournal"; }
         }
         
         string IMigrationMetadata.Source

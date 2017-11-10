@@ -80,25 +80,21 @@
     <Compile Include="DataContext\Type.cs" />
     <Compile Include="DataContext\Veterinarian.cs" />
     <Compile Include="DataContext\ZooDBContext.cs" />
-    <Compile Include="Migrations\201711071612429_Initial.cs" />
-    <Compile Include="Migrations\201711071612429_Initial.Designer.cs">
-      <DependentUpon>201711071612429_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201711100702033_Initial.cs" />
+    <Compile Include="Migrations\201711100702033_Initial.Designer.cs">
+      <DependentUpon>201711100702033_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201711071834133_ChangeNameOnFamilyMembersInAnimal.cs" />
-    <Compile Include="Migrations\201711071834133_ChangeNameOnFamilyMembersInAnimal.Designer.cs">
-      <DependentUpon>201711071834133_ChangeNameOnFamilyMembersInAnimal.cs</DependentUpon>
+    <Compile Include="Migrations\201711100709471_ChangeRelationshipDetailsBetweenAnimalAndJournal.cs" />
+    <Compile Include="Migrations\201711100709471_ChangeRelationshipDetailsBetweenAnimalAndJournal.Designer.cs">
+      <DependentUpon>201711100709471_ChangeRelationshipDetailsBetweenAnimalAndJournal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201711071847542_ChangeWeightFromIntToDecimal.cs" />
-    <Compile Include="Migrations\201711071847542_ChangeWeightFromIntToDecimal.Designer.cs">
-      <DependentUpon>201711071847542_ChangeWeightFromIntToDecimal.cs</DependentUpon>
+    <Compile Include="Migrations\201711100712109_AddIgnoreJournalPropertyInAnimal.cs" />
+    <Compile Include="Migrations\201711100712109_AddIgnoreJournalPropertyInAnimal.Designer.cs">
+      <DependentUpon>201711100712109_AddIgnoreJournalPropertyInAnimal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201711071854053_ChangeWeightFromDecimalToFloat.cs" />
-    <Compile Include="Migrations\201711071854053_ChangeWeightFromDecimalToFloat.Designer.cs">
-      <DependentUpon>201711071854053_ChangeWeightFromDecimalToFloat.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711091215306_ChangeDateAndTimeToSingleDateTimeInBookings.cs" />
-    <Compile Include="Migrations\201711091215306_ChangeDateAndTimeToSingleDateTimeInBookings.Designer.cs">
-      <DependentUpon>201711091215306_ChangeDateAndTimeToSingleDateTimeInBookings.cs</DependentUpon>
+    <Compile Include="Migrations\201711100713286_AddIgnoreJournalPropertyInAnimal1.cs" />
+    <Compile Include="Migrations\201711100713286_AddIgnoreJournalPropertyInAnimal1.Designer.cs">
+      <DependentUpon>201711100713286_AddIgnoreJournalPropertyInAnimal1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\AnimalSimple.cs" />
@@ -162,20 +158,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201711071612429_Initial.resx">
-      <DependentUpon>201711071612429_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201711100702033_Initial.resx">
+      <DependentUpon>201711100702033_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711071834133_ChangeNameOnFamilyMembersInAnimal.resx">
-      <DependentUpon>201711071834133_ChangeNameOnFamilyMembersInAnimal.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201711100709471_ChangeRelationshipDetailsBetweenAnimalAndJournal.resx">
+      <DependentUpon>201711100709471_ChangeRelationshipDetailsBetweenAnimalAndJournal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711071847542_ChangeWeightFromIntToDecimal.resx">
-      <DependentUpon>201711071847542_ChangeWeightFromIntToDecimal.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201711100712109_AddIgnoreJournalPropertyInAnimal.resx">
+      <DependentUpon>201711100712109_AddIgnoreJournalPropertyInAnimal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711071854053_ChangeWeightFromDecimalToFloat.resx">
-      <DependentUpon>201711071854053_ChangeWeightFromDecimalToFloat.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711091215306_ChangeDateAndTimeToSingleDateTimeInBookings.resx">
-      <DependentUpon>201711091215306_ChangeDateAndTimeToSingleDateTimeInBookings.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201711100713286_AddIgnoreJournalPropertyInAnimal1.resx">
+      <DependentUpon>201711100713286_AddIgnoreJournalPropertyInAnimal1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.SqlServer.Server;
 using MyZoo.DataContext;
-using MyZoo.Migrations;
 using MyZoo.Model;
 
 namespace MyZoo.DAL

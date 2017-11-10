@@ -41,6 +41,16 @@ namespace MyZoo.DataContext
                 .HasMany(e => e.FamiliesMothers)
                 .WithOptional(e => e.AnimalFather)
                 .HasForeignKey(e => e.MotherId);
+
+            //modelBuilder.Entity<Animal>()
+            //    .HasOptional(e => e.Journal)
+            //    .WithRequired(e => e.Animal);
+
+            modelBuilder.Entity<Journal>()
+                .HasRequired(e => e.Animal)
+                .WithOptional(e => e.Journal);
+            modelBuilder.Entity<Animal>()
+                .Ignore(e => e.Journal);
         }
     }
 }
