@@ -8,7 +8,7 @@
         Title="MakeVetAppointment" Height="394.768" Width="646.829">
     <Grid Margin="0,0,-0.2,3.8">
 
-        <Calendar Name="CalendarVetBookingDate" Margin="398,38,16,66.8"></Calendar>
+        <Calendar Name="CalendarVetBookingDate" Margin="398,38,16,149"></Calendar>
         <ListBox Name="ListBoxNameResult" SelectionChanged="ListBoxNameResult_OnSelectionChanged" HorizontalAlignment="Left" Height="123" Margin="18,98,0,0" VerticalAlignment="Top" Width="375"/>
         <TextBox Name="TextBoxNameSearch" HorizontalAlignment="Left" Height="23" Margin="104,24,0,0" VerticalAlignment="Top" Width="120"/>
         <ListBox Name="ListBoxCurrentBookings" HorizontalAlignment="Left" Height="64" Margin="18,261,0,0" VerticalAlignment="Top" Width="375"/>
@@ -16,11 +16,11 @@
         <Label Content="Resultat" HorizontalAlignment="Left" Margin="18,67,0,0" VerticalAlignment="Top" Width="72"/>
         <Label Content="Aktuella bokningar" HorizontalAlignment="Left" Margin="18,230,0,0" VerticalAlignment="Top"/>
         <Button Name="ButtonNameSearch" Content="Sök" Click="ButtonNameSearch_OnClick" HorizontalAlignment="Left" Margin="229,27,0,0" VerticalAlignment="Top" Width="75"/>
-        <ComboBox Name="ComboBoxVeterinarians" HorizontalAlignment="Left" Margin="472,248,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Vetrinär" HorizontalAlignment="Left" Margin="416,245,0,0" VerticalAlignment="Top"/>
-        <Button Name="ButtonMakeBooking" Content="Boka" Click="ButtonMakeBooking_OnClick" HorizontalAlignment="Left" Margin="517,275,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBox Name="TextBoxVetBookingsTime" HorizontalAlignment="Left" Height="23" Margin="472,220,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Tid (hh:mm)" HorizontalAlignment="Left" Margin="393,217,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name="ComboBoxVeterinarians" HorizontalAlignment="Left" Margin="488,248,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Vetrinär" HorizontalAlignment="Left" Margin="432,245,0,0" VerticalAlignment="Top"/>
+        <Button Name="ButtonMakeBooking" Content="Boka" Click="ButtonMakeBooking_OnClick" HorizontalAlignment="Left" Margin="533,275,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBox Name="TextBoxVetBookingsTime" HorizontalAlignment="Left" Height="23" Margin="488,220,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Tid (hh:mm)" HorizontalAlignment="Left" Margin="409,217,0,0" VerticalAlignment="Top"/>
         <Button Name="ButtonRemoveBooking" Content="Ta bort" Click="ButtonRemoveBooking_OnClick" HorizontalAlignment="Left" Margin="18,330,0,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>
