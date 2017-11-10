@@ -531,23 +531,23 @@ namespace MyZoo.DAL
         {
             BindingList<JournalEntry> list = null;
 
-            //using (var db = new ZooDataBaseContext())
-            //{
-            //    var query = from journalEntry in db.Journals
-            //        where journalEntry.AnimalId == animalId
-            //        select new JournalEntry()
-            //        {
-            //            AnimalId = journalEntry.AnimalId,
-            //            AnimalName = journalEntry.Animal.Name,
-            //            JournalId = journalEntry.JournalId,
-            //            DiagnoseId = (int) journalEntry.DiagnoseId,
-            //            DiagnoseName = journalEntry.Diagnosis.Name,
-            //            DiagnoseDescription = journalEntry.Diagnosis.Description,
-            //            Medications = journalEntry.Medications.Select(p => p.Name).ToList()
-            //        };
+            using (var db = new ZooDataBaseContext())
+            {
+                var query = from journalEntry in db.JournalsDiagnoses
+                            where journalEntry.JournalId == animalId
+                            select new JournalEntry()
+                            {
+                                AnimalId = journalEntry.Journal.Animal.AnimalId,
+                                AnimalName = journalEntry.Journal.Animal.Name,
+                                JournalId = journalEntry.JournalId,
+                                DiagnoseId = (int)journalEntry.DiagnoseId,
+                                DiagnoseName = journalEntry.Diagnosis.Name,
+                                DiagnoseDescription = journalEntry.Diagnosis.Description,
+                                Medications = journalEntry.Medications.Select(p => p.Name).ToList()
+                            };
 
-            //    list = new BindingList<JournalEntry>(query.ToList());
-            //}
+                list = new BindingList<JournalEntry>(query.ToList());
+            }
 
             return list;
         }

@@ -100,6 +100,14 @@
     <Compile Include="Migrations\201711101958398_RemoveAnimalIdPropertyInJournal.Designer.cs">
       <DependentUpon>201711101958398_RemoveAnimalIdPropertyInJournal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711102036097_ChangeNameFromJournalIdToAnimalIdInJournal.cs" />
+    <Compile Include="Migrations\201711102036097_ChangeNameFromJournalIdToAnimalIdInJournal.Designer.cs">
+      <DependentUpon>201711102036097_ChangeNameFromJournalIdToAnimalIdInJournal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711102047057_AddNotationToJournalIdMappedAsFK.cs" />
+    <Compile Include="Migrations\201711102047057_AddNotationToJournalIdMappedAsFK.Designer.cs">
+      <DependentUpon>201711102047057_AddNotationToJournalIdMappedAsFK.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\AnimalSimple.cs" />
     <Compile Include="Model\AnimalBooking.cs" />
@@ -177,6 +185,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711101958398_RemoveAnimalIdPropertyInJournal.resx">
       <DependentUpon>201711101958398_RemoveAnimalIdPropertyInJournal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711102036097_ChangeNameFromJournalIdToAnimalIdInJournal.resx">
+      <DependentUpon>201711102036097_ChangeNameFromJournalIdToAnimalIdInJournal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711102047057_AddNotationToJournalIdMappedAsFK.resx">
+      <DependentUpon>201711102047057_AddNotationToJournalIdMappedAsFK.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

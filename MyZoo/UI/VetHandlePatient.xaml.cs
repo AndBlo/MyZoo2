@@ -47,6 +47,9 @@ namespace MyZoo.UI
                 DataAccessZoo dataAccess = new DataAccessZoo();
                 var booking = (AnimalBooking)ListBoxBookings.SelectedItem;
                 var journalEntryList = dataAccess.GetJournalEntries(booking.AnimalId);
+
+                LabelCurrentPatient.Content = booking.AnimalName;
+                ListBoxJournalEntries.ItemsSource = journalEntryList;
             }
         }
 

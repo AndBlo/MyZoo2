@@ -13,8 +13,8 @@ namespace MyZoo.DataContext
         {
             JournalsDiagnoses = new HashSet<JournalsDiagnos>();
         }
-
-        public int JournalId { get; set; }
+        [Key]
+        public int AnimalId { get; set; }
 
         //[ForeignKey("Animal")]
         //public int AnimalId { get; set; }

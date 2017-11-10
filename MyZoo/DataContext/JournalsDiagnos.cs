@@ -17,6 +17,7 @@ namespace MyZoo.DataContext
         [Key]
         public int JournalDiagnoseId { get; set; }
 
+        [ForeignKey("Journal")]
         public int JournalId { get; set; }
 
         public int? DiagnoseId { get; set; }
