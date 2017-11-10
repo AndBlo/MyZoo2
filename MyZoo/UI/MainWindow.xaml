@@ -1,0 +1,79 @@
+﻿<Window x:Class="MyZoo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyZoo"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="498.533" Width="456.6">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32*"/>
+            <RowDefinition Height="413*"/>
+        </Grid.RowDefinitions>
+        <ToolBar>
+            <Menu>
+                <MenuItem Header="Arkiv">
+                    <MenuItem Name="MenuItemQuit" Header="Avsluta" Click="MenuItemQuit_OnClick"/>
+                </MenuItem>
+                <MenuItem Header="Zoo">
+                    <MenuItem Name="MenuItemAddAnimals" Header="Lägg till djur" Click="MenuItemAddAnimals_OnClick"/>
+                    <MenuItem Name="MenuItemMakeVetAppointment" Header="Boka tid hos veterinär" Click="MenuItemMakeVetAppointment_OnClick"/>
+                </MenuItem>
+                <MenuItem Header="Veterinär">
+                    <MenuItem Name="MenuItemHandlePatients" Header="Ta emot patient" Click="MenuItemHandlePatients_OnClick"/>
+                </MenuItem>
+            </Menu>
+        </ToolBar>
+        <Button Name="ButtonSearch" Content="Sök" Click="ButtonSearch_OnClick" HorizontalAlignment="Left" Margin="158,195.4,0,0" VerticalAlignment="Top" Width="75" Height="23" Grid.Row="1"/>
+        <ListBox Name="ListBoxResultList" SelectionChanged="ListBoxResultList_OnSelectionChanged"  HorizontalAlignment="Left" Height="118" Margin="17,261.4,0,0" VerticalAlignment="Top" Width="216" Grid.Row="1"/>
+        <ComboBox Name="ComboBoxType" HorizontalAlignment="Left" Margin="113,124.4,0,0" VerticalAlignment="Top" Width="120" Height="27" Grid.Row="1">
+            <ComboBoxItem Content="--------" IsSelected="True"/>
+            <ComboBoxItem Content="Växtätare"/>
+            <ComboBoxItem Content="Köttätare"/>
+        </ComboBox>
+        <ComboBox Name="ComboBoxEnvironment" HorizontalAlignment="Left" Margin="113,83.4,0,0" VerticalAlignment="Top" Width="120" Height="27" Grid.Row="1">
+            <ComboBoxItem Content="--------" IsSelected="True"/>
+            <ComboBoxItem Content="Mark"/>
+            <ComboBoxItem Content="Träd"/>
+            <ComboBoxItem Content="Vatten"/>
+        </ComboBox>
+        <ComboBox Name="ComboBoxDiscrimination" HorizontalAlignment="Left" Margin="113,43.4,0,0" VerticalAlignment="Top" Width="120" Height="27" Grid.Row="1">
+            <ComboBoxItem Content="--------" IsSelected="True"/>
+            <ComboBoxItem Content="Barn"/>
+            <ComboBoxItem Content="Förälder"/>
+            <ComboBoxItem Content="Moder"/>
+            <ComboBoxItem Content="Fader"/>
+        </ComboBox>
+        <Label Content="Sökvillkor" HorizontalAlignment="Left" Margin="113,12.4,0,0" VerticalAlignment="Top" Height="26" Width="81" Grid.Row="1"/>
+        <Label Content="Resultat" HorizontalAlignment="Left" Margin="17,228.4,0,0" VerticalAlignment="Top" Height="26" Width="81" Grid.Row="1"/>
+        <Button Name="ButtonRemove" Content="Ta bort" Click="ButtonRemove_OnClick" HorizontalAlignment="Left" Margin="17,384.4,0,0" VerticalAlignment="Top" Width="75" Grid.Row="1"/>
+        <TextBox x:Name="TextBoxSearchSpecies" HorizontalAlignment="Left" Height="23" Margin="113,167.4,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Row="1"/>
+        <Label Content="Art" HorizontalAlignment="Left" Margin="17,164.4,0,0" VerticalAlignment="Top" Height="26" Width="45" Grid.Row="1"/>
+        <Label Content="Namn" HorizontalAlignment="Left" Margin="260,54.4,0,0" VerticalAlignment="Top" Height="26" Width="81" Grid.Row="1"/>
+        <Label Content="Kön" HorizontalAlignment="Left" Margin="260,85.4,0,0" VerticalAlignment="Top" Height="26" Width="38" Grid.Row="1"/>
+        <Label Content="Vikt" HorizontalAlignment="Left" Margin="260,116.4,0,0" VerticalAlignment="Top" Height="26" Width="38" Grid.Row="1"/>
+        <Label Content="Land" HorizontalAlignment="Left" Margin="260,147.4,0,0" VerticalAlignment="Top" Height="26" Width="81" Grid.Row="1"/>
+        <Label Content="Art" HorizontalAlignment="Left" Margin="260,178.4,0,0" VerticalAlignment="Top" Height="26" Width="63" Grid.Row="1"/>
+        <Label Content="Typ" HorizontalAlignment="Left" Margin="260,209.4,0,0" VerticalAlignment="Top" Height="26" Width="63" Grid.Row="1"/>
+        <Label Content="Miljö" HorizontalAlignment="Left" Margin="260,240.4,0,0" VerticalAlignment="Top" Height="26" Width="81" Grid.Row="1"/>
+        <Label Content="Moder" HorizontalAlignment="Left" Margin="260,302.4,0,0" VerticalAlignment="Top" Height="26" Width="54" Grid.Row="1"/>
+        <Label Content="Fader" HorizontalAlignment="Left" Margin="260,271.4,0,0" VerticalAlignment="Top" Height="26" Width="52" Grid.Row="1"/>
+        <Label Content="Id" HorizontalAlignment="Left" Margin="260,23.4,0,0" VerticalAlignment="Top" Height="26" Width="28" Grid.Row="1" />
+        <Label Name="LabelName" HorizontalAlignment="Left" Margin="346,54.4,0,0" VerticalAlignment="Top" Height="26" Width="81" Grid.Row="1"/>
+        <Label Name="LabelSex" HorizontalAlignment="Left" Margin="346,85.4,0,0" VerticalAlignment="Top" Height="26" Width="38" Grid.Row="1"/>
+        <Label Name="LabelWeight" HorizontalAlignment="Left" Margin="346,116.4,0,0" VerticalAlignment="Top" Height="26" Width="38" Grid.Row="1"/>
+        <Label Name="LabelCountry" HorizontalAlignment="Left" Margin="346,147.4,0,0" VerticalAlignment="Top" Height="26" Width="81" Grid.Row="1"/>
+        <Label Name="LabelSpecies" HorizontalAlignment="Left" Margin="346,178.4,0,0" VerticalAlignment="Top" Height="26" Width="63" Grid.Row="1"/>
+        <Label Name="LabelType" HorizontalAlignment="Left" Margin="346,209.4,0,0" VerticalAlignment="Top" Height="26" Width="63" Grid.Row="1"/>
+        <Label Name="LabelEnvironment" HorizontalAlignment="Left" Margin="346,240.4,0,0" VerticalAlignment="Top" Height="26" Width="81" Grid.Row="1"/>
+        <Label Name="LabelMother" HorizontalAlignment="Left" Margin="346,302.4,0,0" VerticalAlignment="Top" Height="26" Width="54" Grid.Row="1"/>
+        <Label Name="LabelFather" HorizontalAlignment="Left" Margin="346,271.4,0,0" VerticalAlignment="Top" Height="26" Width="52" Grid.Row="1"/>
+        <Label Name="LabelId" HorizontalAlignment="Left" Margin="346,23.4,0,0" VerticalAlignment="Top" Height="26" Width="28" Grid.Row="1"  />
+        <Label Content="Diskriminering" HorizontalAlignment="Left" Margin="17,41.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <Label Content="Miljö" HorizontalAlignment="Left" Margin="17,84.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <Label Content="Typ" HorizontalAlignment="Left" Margin="17,125.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <Button Name="ButtonEditAnimal" Content="Redigera" Click="ButtonEditAnimal_OnClick" HorizontalAlignment="Left" Margin="158,384.4,0,0" VerticalAlignment="Top" Width="75" Grid.Row="1"/>
+
+    </Grid>
+</Window>

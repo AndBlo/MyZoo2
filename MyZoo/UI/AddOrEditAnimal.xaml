@@ -1,0 +1,45 @@
+﻿<Window x:Class="MyZoo.UI.AddOrEditAnimal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyZoo.UI"
+        mc:Ignorable="d"
+        Title="EditAnimal" Height="439.785" Width="300">
+    <Grid>
+        <Label Content="* Namn" HorizontalAlignment="Left" Margin="37,68,0,0" VerticalAlignment="Top" Height="26" Width="81"/>
+        <Label Content="* Kön" HorizontalAlignment="Left" Margin="37,99,0,0" VerticalAlignment="Top" Height="26" Width="38"/>
+        <Label Content="* Vikt" HorizontalAlignment="Left" Margin="37,130,0,0" VerticalAlignment="Top" Height="26" Width="38"/>
+        <Label Content="* Land" HorizontalAlignment="Left" Margin="37,161,0,0" VerticalAlignment="Top" Height="26" Width="81"/>
+        <Label Content="* Art" HorizontalAlignment="Left" Margin="37,192,0,0" VerticalAlignment="Top" Height="26" Width="63"/>
+        <Label Content="* Typ" HorizontalAlignment="Left" Margin="37,223,0,0" VerticalAlignment="Top" Height="26" Width="63"/>
+        <Label Content="* Miljö" HorizontalAlignment="Left" Margin="37,254,0,0" VerticalAlignment="Top" Height="26" Width="81"/>
+        <Label Content="Moder" HorizontalAlignment="Left" Margin="37,316,0,0" VerticalAlignment="Top" Height="26" Width="54"/>
+        <Label Content="Fader" HorizontalAlignment="Left" Margin="37,285,0,0" VerticalAlignment="Top" Height="26" Width="52"/>
+        <Label Content="Id" HorizontalAlignment="Left" Margin="37,37,0,0" VerticalAlignment="Top" Height="26" Width="28" />
+        <TextBox Name="TextBoxName" HorizontalAlignment="Left" Height="23" Margin="123,71,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <ComboBox Name="TextBoxSex" HorizontalAlignment="Left" Height="23" Margin="123,103,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="Hona"/>
+            <ComboBoxItem Content="Hane"/>
+        </ComboBox>
+        <TextBox Name="TextBoxWeight" HorizontalAlignment="Left" Height="23" Margin="123,134,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="TextBoxCountry" HorizontalAlignment="Left" Height="23" Margin="123,165,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="TextBoxSpecies" HorizontalAlignment="Left" Height="23" Margin="123,196,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <ComboBox Name="TextBoxType" HorizontalAlignment="Left" Height="23" Margin="123,227,0,0"  VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="Köttätare"/>
+            <ComboBoxItem Content="Växtätare"/>
+        </ComboBox>
+        <ComboBox Name="TextBoxEnvironment" HorizontalAlignment="Left" Height="23" Margin="123,258,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="Mark"/>
+            <ComboBoxItem Content="Träd"/>
+            <ComboBoxItem Content="Vatten"/>
+        </ComboBox>
+        <TextBox Name="TextBoxFather" HorizontalAlignment="Left" Height="23" Margin="123,289,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="TextBoxMother" HorizontalAlignment="Left" Height="23" Margin="123,320,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <Button Name="ButtonSaveChanges" Content="Spara" Click="ButtonSaveChanges_OnClick" HorizontalAlignment="Left" Margin="49,376,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Gå tillbaka" HorizontalAlignment="Left" Margin="168,376,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label Name="LabelId" Content="" HorizontalAlignment="Left" Margin="123,37,0,0" VerticalAlignment="Top"/>
+        <Label Content="* = obligatoriska fält" HorizontalAlignment="Left" Margin="37,343,0,0" VerticalAlignment="Top" Height="26" Width="120"/>
+
+    </Grid>
+</Window>
