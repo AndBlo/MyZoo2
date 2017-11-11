@@ -80,6 +80,10 @@
     <Compile Include="DataContext\Type.cs" />
     <Compile Include="DataContext\Veterinarian.cs" />
     <Compile Include="DataContext\ZooDBContext.cs" />
+    <Compile Include="Exceptions\AddingDuplicateException.cs" />
+    <Compile Include="Exceptions\DbObjectNotFoundException.cs" />
+    <Compile Include="Exceptions\RequiredFieldsNullException.cs" />
+    <Compile Include="Exceptions\UnableToRemoveObjectException.cs" />
     <Compile Include="Migrations\201711100702033_Initial.cs" />
     <Compile Include="Migrations\201711100702033_Initial.Designer.cs">
       <DependentUpon>201711100702033_Initial.cs</DependentUpon>
@@ -111,7 +115,9 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\AnimalSimple.cs" />
     <Compile Include="Model\AnimalBooking.cs" />
+    <Compile Include="Model\Diagnosis.cs" />
     <Compile Include="Model\JournalEntry.cs" />
+    <Compile Include="Model\Medication.cs" />
     <Compile Include="Model\Veterinary.cs" />
     <Compile Include="UI\MakeVetAppointment.xaml.cs">
       <DependentUpon>MakeVetAppointment.xaml</DependentUpon>

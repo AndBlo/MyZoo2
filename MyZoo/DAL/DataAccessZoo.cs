@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.Entity;
@@ -9,8 +10,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.SqlServer.Server;
+using Microsoft.Win32;
 using MyZoo.DataContext;
+using MyZoo.Exceptions;
 using MyZoo.Model;
+using Diagnosis = MyZoo.Model.Diagnosis;
+using Medication = MyZoo.Model.Medication;
 
 namespace MyZoo.DAL
 {
@@ -204,6 +209,25 @@ namespace MyZoo.DAL
                 list = new BindingList<AnimalSimple>(query.ToList());
             }
 
+            return list;
+        }
+
+        public BindingList<AnimalSimple> GetSimpleAnimalList()
+        {
+            BindingList<AnimalSimple> list = null;
+
+            using (var db = new ZooDataBaseContext())
+            {
+                var query = from animal in db.Animals
+                            select new AnimalSimple()
+                            {
+                                AnimalId = animal.AnimalId,
+                                Name = animal.Name,
+                                Species = animal.Species.Name
+                            };
+
+                list = new BindingList<AnimalSimple>(query.ToList());
+            }
             return list;
         }
 
@@ -436,6 +460,7 @@ namespace MyZoo.DAL
                     }
                 }
 
+
                 db.Animals.Remove(animal);
                 db.SaveChanges();
             }
@@ -463,14 +488,36 @@ namespace MyZoo.DAL
             return list;
         }
 
-        public BindingList<AnimalBooking> GetBookingByVeterinaryIdList(int veterinaryId)
+        public BindingList<AnimalBooking> GetBookingListByVeterinaryId(int veterinaryId)
         {
             BindingList<AnimalBooking> list = null;
 
             using (var db = new ZooDataBaseContext())
             {
                 var query = from booking in db.Bookings
-                    where booking.VeterinaryId == veterinaryId
+                            where booking.VeterinaryId == veterinaryId
+                            select new AnimalBooking()
+                            {
+                                AnimalId = booking.AnimalId,
+                                AnimalName = booking.Animal.Name,
+                                BookingId = booking.BookingId,
+                                DateTime = booking.DateTime,
+                                VeterinaryId = booking.VeterinaryId,
+                                VeterinaryName = booking.Veterinarian.Namn
+                            };
+                list = new BindingList<AnimalBooking>(query.ToList());
+            }
+            return list;
+        }
+
+        public BindingList<AnimalBooking> GetBookingListByAnimalId(int animalId)
+        {
+            BindingList<AnimalBooking> list = null;
+
+            using (var db = new ZooDataBaseContext())
+            {
+                var query = from booking in db.Bookings
+                    where booking.AnimalId == animalId
                     select new AnimalBooking()
                     {
                         AnimalId = booking.AnimalId,
@@ -497,7 +544,7 @@ namespace MyZoo.DAL
 
                 if (registeredBooking != null)
                 {
-                    throw new Exception("Bokningen finns redan.");
+                    throw new AddingDuplicateException("Bokningen finns redan.");
                 }
                 else
                 {
@@ -521,9 +568,17 @@ namespace MyZoo.DAL
             using (var db = new ZooDataBaseContext())
             {
                 var currentBooking = db.Bookings.Find(bookingId);
-                db.Bookings.Remove(currentBooking);
 
-                db.SaveChanges();
+                if (currentBooking != null)
+                {
+                    db.Bookings.Remove(currentBooking);
+
+                    db.SaveChanges();
+                }
+                else
+                {
+                    throw new DbObjectNotFoundException("Bokningen finns inte i databasen.");
+                }
             }
         }
 
@@ -550,6 +605,170 @@ namespace MyZoo.DAL
             }
 
             return list;
+        }
+
+        public BindingList<Model.Diagnosis> GetDiagnoses()
+        {
+            BindingList<Model.Diagnosis> list = null;
+
+            using (var db = new ZooDataBaseContext())
+            {
+                var query = from d in db.Diagnoses
+                            select new Model.Diagnosis()
+                            {
+                                DiagnosisId = d.DiagnoseId,
+                                Name = d.Name,
+                                Description = d.Description
+                            };
+
+                list = new BindingList<Diagnosis>(query.ToList());
+            }
+
+            return list;
+        }
+
+        public BindingList<Model.Medication> GetMedications()
+        {
+            BindingList<Model.Medication> list = null;
+
+            using (var db = new ZooDataBaseContext())
+            {
+                var query = from m in db.Medications
+                            select new Model.Medication()
+                            {
+                                MedicationId = m.MedicationId,
+                                Name = m.Name
+                            };
+
+                list = new BindingList<Medication>(query.ToList());
+            }
+
+            return list;
+        }
+
+        public void AddNewMedication(string newMed)
+        {
+
+        }
+
+        public Medication AddOrUpdateAndGetMedication(string medString)
+        {
+            Medication medicationModel = null;
+
+            using (var db = new ZooDataBaseContext())
+            {
+                var containsMedication = db.Medications.Any(m => m.Name == medString);
+
+                if (!containsMedication)
+                {
+                    db.Medications.Add(new DataContext.Medication() { Name = medString });
+
+                    db.SaveChanges();
+                }
+
+                var query = from m in db.Medications
+                            where m.Name == medString
+                            select new Model.Medication()
+                            {
+                                Name = m.Name
+                            };
+
+                medicationModel = query.FirstOrDefault();
+            }
+
+            if (medicationModel == null)
+            {
+                throw new DbObjectNotFoundException("Medicinen kunde inte hittas i database.");
+            }
+
+            return medicationModel;
+        }
+
+        public Diagnosis AddOrUpdateAndGetDiagnosis(string diagnosisString, string description = "")
+        {
+            Diagnosis diagnosisModel = null;
+
+            using (var db = new ZooDataBaseContext())
+            {
+                var containsDiagnosis = db.Diagnoses.Any(m => m.Name == diagnosisString);
+
+                if (!containsDiagnosis)
+                {
+                    db.Diagnoses.Add(new DataContext.Diagnosis() { Name = diagnosisString, Description = description });
+
+                    db.SaveChanges();
+                }
+
+                var query = from d in db.Diagnoses
+                            where d.Name == diagnosisString
+                            select new Model.Diagnosis()
+                            {
+                                Name = d.Name,
+                                Description = d.Description
+                            };
+
+                diagnosisModel = query.FirstOrDefault();
+            }
+
+            if (diagnosisModel == null)
+            {
+                throw new DbObjectNotFoundException("Diagnosen kunde inte hittas i databasen.");
+            }
+
+            return diagnosisModel;
+        }
+
+        public void AddJournalEntryToJournals(JournalEntry journalEntry)
+        {
+            using (var db = new ZooDataBaseContext())
+            {
+
+                var medicationList = (from m in db.Medications
+                    where journalEntry.Medications.Contains(m.Name)
+                    select m).ToList();
+                var journal = db.Journals
+                    .Where(j => j.AnimalId == journalEntry.AnimalId)
+                    .Select(j => j)
+                    .FirstOrDefault();
+
+                if (journal == null)
+                {
+                    db.Journals.Add(new Journal()
+                    {
+                        Animal = db.Animals.Find(journalEntry.AnimalId),
+                    });
+                    db.SaveChanges();
+                }
+
+                db.JournalsDiagnoses.Add(new JournalsDiagnos()
+                {
+                    Journal = db.Journals.Find(journalEntry.JournalId),
+                    Diagnosis = db.Diagnoses.Find(journalEntry.DiagnoseId),
+                    Medications = medicationList
+                });
+
+                db.SaveChanges();
+            }
+        }
+
+        public void RemoveJournalEntry(JournalEntry journalEntry)
+        {
+            using (var db = new ZooDataBaseContext())
+            {
+                var journalsDiagnose = db.JournalsDiagnoses
+                    .Where(j => j.JournalId == journalEntry.JournalId)
+                    .Select(j => j).FirstOrDefault();
+
+                if (journalsDiagnose != null)
+                {
+                    db.JournalsDiagnoses.Remove(journalsDiagnose);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    throw new DbObjectNotFoundException("Journalanteckningen finns inte i databasen.");
+                }
+            }
         }
     }
 }

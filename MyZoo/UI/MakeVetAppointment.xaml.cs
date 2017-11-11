@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MyZoo.DAL;
+using MyZoo.Exceptions;
 using MyZoo.Model;
 
 namespace MyZoo.UI
@@ -51,7 +52,7 @@ namespace MyZoo.UI
                 UpdateCurrentBookingsListBox();
 
             }
-            catch (Exception exception)
+            catch (AddingDuplicateException exception)
             {
                 MessageBox.Show(exception.Message);
             }
