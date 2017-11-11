@@ -27,13 +27,12 @@ namespace MyZoo
         public MainWindow()
         {
             InitializeComponent();
-            //Configuration conf = new Configuration();
-            //conf.doIt();
         }
 
         private void ButtonSearch_OnClick(object sender, RoutedEventArgs e)
         {
             ClearAnimalDetailsLabels();
+
             UserSearchModel search = new UserSearchModel()
             {
                 Discrimination = ComboBoxDiscrimination.Text,
@@ -83,12 +82,10 @@ namespace MyZoo
             LabelWeight.Content = "";
             LabelType.Content = "";
             LabelSpecies.Content = "";
-            //ListBoxParentsTo.ItemsSource = null;
         }
 
         private void ListBoxResultList_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //DataGridResultDetails. = ((AnimalDetailed)ListBoxResultList.SelectedItem)
             if (ListBoxResultList.SelectedItem != null && ListBoxResultList.SelectedItem is AnimalDetailed)
             {
                 var animal = (AnimalDetailed)ListBoxResultList.SelectedItem;
@@ -103,7 +100,6 @@ namespace MyZoo
                 LabelEnvironment.Content = animal.Environment;
                 LabelMother.Content = animal.Mother;
                 LabelFather.Content = animal.Father;
-                //ListBoxParentsTo.ItemsSource = animal.ChildList;
             }
 
         }
