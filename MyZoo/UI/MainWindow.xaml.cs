@@ -33,6 +33,7 @@ namespace MyZoo
 
         private void ButtonSearch_OnClick(object sender, RoutedEventArgs e)
         {
+            ClearAnimalDetailsLabels();
             UserSearchModel search = new UserSearchModel()
             {
                 Discrimination = ComboBoxDiscrimination.Text,
@@ -52,18 +53,21 @@ namespace MyZoo
 
         private void ButtonRemove_OnClick(object sender, RoutedEventArgs e)
         {
-            DataAccessZoo dataAccess = new DataAccessZoo();
-            var animal = (AnimalDetailed)ListBoxResultList.SelectedItem;
-            try
+            if (ListBoxResultList.SelectedItem != null)
             {
-                dataAccess.RemoveAnimal(animal.AnimalId);
-                var list =  ListBoxResultList.ItemsSource as BindingList<AnimalDetailed>;
-                list.Remove(animal);
-                ClearAnimalDetailsLabels();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+                DataAccessZoo dataAccess = new DataAccessZoo();
+                var animal = (AnimalDetailed)ListBoxResultList.SelectedItem;
+                try
+                {
+                    dataAccess.RemoveAnimal(animal.AnimalId);
+                    var list =  ListBoxResultList.ItemsSource as BindingList<AnimalDetailed>;
+                    list.Remove(animal);
+                    ClearAnimalDetailsLabels();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 

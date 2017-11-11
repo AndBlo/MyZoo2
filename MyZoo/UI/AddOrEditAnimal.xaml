@@ -37,7 +37,7 @@
         <TextBox Name="TextBoxFather" HorizontalAlignment="Left" Height="23" Margin="123,289,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         <TextBox Name="TextBoxMother" HorizontalAlignment="Left" Height="23" Margin="123,320,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         <Button Name="ButtonSaveChanges" Content="Spara" Click="ButtonSaveChanges_OnClick" HorizontalAlignment="Left" Margin="49,376,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Gå tillbaka" HorizontalAlignment="Left" Margin="168,376,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Gå tillbaka" Click="ButtonBase_OnClick" HorizontalAlignment="Left" Margin="168,376,0,0" VerticalAlignment="Top" Width="75"/>
         <Label Name="LabelId" Content="" HorizontalAlignment="Left" Margin="123,37,0,0" VerticalAlignment="Top"/>
         <Label Content="* = obligatoriska fält" HorizontalAlignment="Left" Margin="37,343,0,0" VerticalAlignment="Top" Height="26" Width="120"/>
 

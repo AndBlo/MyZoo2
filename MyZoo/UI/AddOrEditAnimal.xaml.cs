@@ -71,7 +71,7 @@ namespace MyZoo.UI
             try
             {
                 access.AddOrUpdateAnimal(animal);
-                MessageBox.Show("Ändringar sparade!");
+                MessageBox.Show("Uppgifterna sparades!");
             }
             catch (Exception exception)
             {
@@ -125,6 +125,11 @@ namespace MyZoo.UI
             message = sb.ToString();
 
             return isValid;
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

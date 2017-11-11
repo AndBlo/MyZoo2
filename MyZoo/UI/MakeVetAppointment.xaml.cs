@@ -32,21 +32,25 @@ namespace MyZoo.UI
 
         private void ButtonMakeBooking_OnClick(object sender, RoutedEventArgs e)
         {
-            var date = GetSelectedDateTime();
-            var vet = (Veterinary)ComboBoxVeterinarians.SelectedItem;
-            var animal = (AnimalSimple)ListBoxNameResult.SelectedItem;
-            var booking = new AnimalBooking()
-            {
-                AnimalId = animal.AnimalId,
-                AnimalName = animal.Name,
-                DateTime = date,
-                VeterinaryId = vet.Id,
-                VeterinaryName = vet.Name
-            };
-
-            DataAccessZoo dataAccess = new DataAccessZoo();
             try
             {
+                var date = GetSelectedDateTime();
+                var vet = (Veterinary) ComboBoxVeterinarians.SelectedItem;
+                var animal = (AnimalSimple) ListBoxNameResult.SelectedItem;
+
+                ValidateRequriedBookingFields(date, vet, animal);
+
+                var booking = new AnimalBooking()
+                {
+                    AnimalId = animal.AnimalId,
+                    AnimalName = animal.Name,
+                    DateTime = date,
+                    VeterinaryId = vet.Id,
+                    VeterinaryName = vet.Name
+                };
+
+                DataAccessZoo dataAccess = new DataAccessZoo();
+
                 dataAccess.AddBooking(booking);
                 MessageBox.Show("Bokningen är inlagd!");
                 UpdateCurrentBookingsListBox();
@@ -56,15 +60,57 @@ namespace MyZoo.UI
             {
                 MessageBox.Show(exception.Message);
             }
+            catch (InvalidBookingDateTimeException exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+            catch (RequiredFieldsNullException exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+        }
+
+        private void ValidateRequriedBookingFields(DateTime date, Veterinary vet, AnimalSimple animal)
+        {
+            if (date < DateTime.Now)
+            {
+                throw new InvalidBookingDateTimeException("Den angivna tiden har passerat");
+            }
+            if (vet == null)
+            {
+                throw new RequiredFieldsNullException("Ingen veterinär har valts för bokningen");
+            }
+            if (animal == null)
+            {
+                throw new RequiredFieldsNullException("Inget djur har valts för bokningen");
+            }
         }
 
         private DateTime GetSelectedDateTime()
         {
-            var dateTime = (DateTime)CalendarVetBookingDate.SelectedDate;
+            DateTime? dateTime = null;
+            if (CalendarVetBookingDate.SelectedDate != null)
+            {
+                dateTime = (DateTime)CalendarVetBookingDate.SelectedDate;
+            }
+            else
+            {
+                throw new InvalidBookingDateTimeException("Ett datum måste väljas från kalendern");
+            }
+
             var split = TextBoxVetBookingsTime.Text.Split(':');
-            dateTime = dateTime.AddHours(double.Parse(split[0]));
-            dateTime = dateTime.AddMinutes(double.Parse(split[1]));
-            return dateTime;
+
+            if (double.TryParse(split[0], out double hour) && double.TryParse(split[1], out double minute))
+            {
+                dateTime = dateTime.Value.AddHours(hour);
+                dateTime = dateTime.Value.AddMinutes(minute);
+            }
+            else
+            {
+                throw new InvalidBookingDateTimeException("Den angivna tiden är i fel format.\nhh:mm");
+            }
+
+            return (DateTime)dateTime;
         }
 
         private void ButtonNameSearch_OnClick(object sender, RoutedEventArgs e)

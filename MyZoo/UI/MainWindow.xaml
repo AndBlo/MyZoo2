@@ -18,9 +18,9 @@
                 </MenuItem>
                 <MenuItem Header="Zoo">
                     <MenuItem Name="MenuItemAddAnimals" Header="Lägg till djur" Click="MenuItemAddAnimals_OnClick"/>
-                    <MenuItem Name="MenuItemMakeVetAppointment" Header="Boka tid hos veterinär" Click="MenuItemMakeVetAppointment_OnClick"/>
                 </MenuItem>
                 <MenuItem Header="Veterinär">
+                    <MenuItem Name="MenuItemMakeVetAppointment" Header="Boka tid hos veterinär" Click="MenuItemMakeVetAppointment_OnClick"/>
                     <MenuItem Name="MenuItemHandlePatients" Header="Ta emot patient" Click="MenuItemHandlePatients_OnClick"/>
                 </MenuItem>
             </Menu>
