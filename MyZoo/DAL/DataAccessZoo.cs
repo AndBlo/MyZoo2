@@ -444,6 +444,15 @@ namespace MyZoo.DAL
                 Family motherFamily = motherQuery.FirstOrDefault();
                 Family fatherFamily = fatherQuery.FirstOrDefault();
 
+                Journal animalJournal = db.Journals
+                    .Where(j => j.AnimalId == animalId)
+                    .Select(j => j)
+                    .FirstOrDefault();
+                JournalsDiagnos journalDiagnosis = db.JournalsDiagnoses
+                    .Where(j => j.JournalId == animalId)
+                    .Select(j => j)
+                    .FirstOrDefault();
+
                 if (childFamily != null)
                 {
                     db.Families.Remove(childFamily);
@@ -458,6 +467,16 @@ namespace MyZoo.DAL
                     {
                         fatherFamily.AnimalFather = null;
                     }
+                }
+
+                if (journalDiagnosis != null)
+                {
+                    db.JournalsDiagnoses.Remove(journalDiagnosis);
+                }
+
+                if (animalJournal != null)
+                {
+                    db.Journals.Remove(animalJournal);
                 }
 
 
